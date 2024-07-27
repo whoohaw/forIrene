@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Lobster", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+body {
+    min-height: 100vh;
+    width: 100%;
+    background: url(https://i.ibb.co/7WpjfyY/pngtree-seamless-repeat-pattern-with-flowers-and-leaves-scandinavian-childish-drawing-background-pic.png) center/contain repeat;
+}
+.toggler {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) skew(0deg, -2deg);
+    cursor: pointer;
+    width: 400px;
+    height: 600px;
+    z-index: 10;
+    opacity: 0;
+}
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 600px;
+    z-index: 1;
+    transform: translate(-50%, -50%) skew(0deg, -2deg);
+    display: flex;
+    justify-content: space-evenly;
+    perspective: 1200px;
+}
+.item{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: 2.5s;
+    transform-style: preserve-3d;
+    transform-origin: left;
+}
+
+.front-face{
+    width: 100%;
+    height: 100%;
+    background: #ddab87;
+    border-radius: 15px;
+    border: 3px solid white;
+    position: absolute;
+    top:0;
+    left: 0;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    z-index: 3;
+}
+.back-face{
+    width: 100%;
+    height: 100%;
+    background: #ddab87;
+    border-radius: 15px;
+    border: 3px solid white;
+    border-right: 16px dashed #1c8799;
+    position: absolute;
+    top:0;
+    left: 0;
+    backface-visibility: hidden;
+    z-index: 2;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+}
+.inside {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 600px;
+    background:url("https://i.ibb.co/X3ZYhWf/party-icon-confetti-popper-illustration-png.png") bottom center/contain no-repeat, linear-gradient(#eca572, #eca572);
+    border-radius: 15px;
+    border: 3px solid white;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    z-index: 0;
+}
+
+.unicorn {
+    border-radius: 20px;
+    width: 110px;
+    border: 6px dashed #9460b1;
+    transform: rotate(18deg);
+}
+
+.toggler:checked~.content .item{
+    transform: rotateY(-180deg);
+}
+
+.flower {
+    width: 240px;
+}
+.inside_text {
+    font-size: 36px;
+    transform: rotate(-45deg);
+    margin-bottom: 105px;
+    text-align: center;
+}
+.clouds {
+    width: 240px;
+    animation: resize 3s linear 0s infinite alternate;
+}
+
+@keyframes resize {
+    100% {
+        transform: scale(1.4);
+    }
+}
+.click-text {
+    font-size: 24px;
+}
+.play {
+    width: 40px;
+}
+    </style>
+            <input type="checkbox" name="" class="toggler" id="toggler">
+            <div class="content">
+                <div class="item">
+                    <div class="front-face">
+                        <h1>Ирине от Алексея</h1>
+                        <img class="flower" src="https://i.ibb.co/JpzTSwp/image.png" alt="">
+                        <p class="click-text">жми</p>
+                    </div>
+                    <div class="back-face">
+                        <audio id="audio" src="https://aloneland.webtm.ru/oblaka.mp3" controls></audio>
+                        <img class="clouds" src="https://i.ibb.co/Xt1MgvG/42664sunbehindsmallcloud-99027.png" alt="">
+                    </div>
+                </div>          
+            </div>
+            <div class="inside">
+                <img class="unicorn" src="https://i.ibb.co/3sdpqT0/3468431.png" alt="">
+                <p class="inside_text">Желаю тебе <br> хороших выходных <br>❤️❤️❤️</p>
+            </div>
+
+
+            <script>
+                let notPlay = true;
+                let audio=document.getElementById("audio");
+                audio.volume = 0.25;
+                let toggler = document.getElementById("toggler");
+                toggler.addEventListener("click", ()=>{
+                    if (notPlay) {
+                        audio.play()
+                    }else {
+                        audio.pause()
+                    }
+                    notPlay=!notPlay
+                })
+            </script>
+</body>
+</html>
