@@ -22,6 +22,13 @@ body {
     width: 100%;
     background: url(https://i.ibb.co/7WpjfyY/pngtree-seamless-repeat-pattern-with-flowers-and-leaves-scandinavian-childish-drawing-background-pic.png) center/contain repeat;
 }
+.next_audio {
+    font-size: 24px;
+    animation: resize 0.5s linear 0s infinite alternate;
+    cursor: pointer;
+    display: flex;
+    transform: rotate(25deg);
+}
 .toggler {
     position: absolute;
     top: 50%;
@@ -154,21 +161,36 @@ body {
                         <p class="click-text">жми</p>
                     </div>
                     <div class="back-face">
-                        <audio id="audio" src="https://aloneland.webtm.ru/oblaka.mp3" controls></audio>
+                        <span class="next_audio" id="next_audio">🎵⏩</span>
+
+                        <audio id="audio" src="" controls></audio>
                         <img class="clouds" src="https://i.ibb.co/Xt1MgvG/42664sunbehindsmallcloud-99027.png" alt="">
                     </div>
                 </div>          
             </div>
             <div class="inside">
                 <img class="unicorn" src="https://i.ibb.co/3sdpqT0/3468431.png" alt="">
-                <p class="inside_text">Желаю тебе <br> хороших выходных <br>❤️❤️❤️</p>
+                <p class="inside_text">Желаю тебе <br> хороших выходных <br>❤️❤️❤️
+                </p>
             </div>
 
 
             <script>
+                let music_array = [
+                    "https://aloneland.webtm.ru/oblaka.mp3",
+                    "https://aloneland.webtm.ru/molecul.mp3",
+                    "https://aloneland.webtm.ru/animia.mp3",
+                    "https://aloneland.webtm.ru/paraplany.mp3",
+                    "https://aloneland.webtm.ru/Here.mp3",
+                    "https://aloneland.webtm.ru/ForYou.mp3",
+                ];
+                let random = Math.floor(Math.random()*music_array.length);
                 let notPlay = true;
                 let audio=document.getElementById("audio");
+                let nextaudio = document.querySelector("#next_audio");
                 audio.volume = 0.25;
+                audio.setAttribute("src", music_array[0]);
+                let next =0;
                 let toggler = document.getElementById("toggler");
                 toggler.addEventListener("click", ()=>{
                     if (notPlay) {
@@ -177,6 +199,13 @@ body {
                         audio.pause()
                     }
                     notPlay=!notPlay
+                })
+                nextaudio.addEventListener("click", ()=>{
+                    audio.pause()   
+                    next++
+                    next = next>=music_array.length ? 0 : next++;
+                    audio.setAttribute("src", music_array[next]);
+                    audio.play()
                 })
             </script>
 </body>
